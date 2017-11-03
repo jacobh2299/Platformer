@@ -85,6 +85,8 @@ public class Main extends BasicGame{
 		{
 			DS.draw(0,0);
 			jumping=true;
+			arg1.setColor(Color.white);
+			arg1.drawString("Final Score: "+score,260, 400);
 		}
 		
 	}
