@@ -91,15 +91,15 @@ public class Main extends BasicGame{
 
 	public void init(GameContainer arg0) throws SlickException 
 	{
-		BG = new Image("/Users/jhar3975/Downloads/cloud background.png");
-		DS = new Image("/Users/jhar3975/Downloads/DeathScreen.png");
-		Block = new Image("/Users/jhar3975/Downloads/Platform.png");
-		Image [] pyro = {new Image("/Users/jhar3975/Downloads/sprite1.png"), new Image("/Users/jhar3975/Downloads/sprite2.png"), new Image("/Users/jhar3975/Downloads/sprite3.png")};
+		BG = new Image("res/cloudBackground.png");
+		DS = new Image("res/DeathScreen.png");
+		Block = new Image("res/Platform.png");
+		Image [] pyro = {new Image("res/sprite1.png"), new Image("res/sprite2.png"), new Image("res/sprite3.png")};
 		left = new Animation(pyro, 150, false);
-		Image [] pyro2 = {new Image("/Users/jhar3975/Downloads/sprite4.png"), new Image("/Users/jhar3975/Downloads/sprite5.png"), new Image("/Users/jhar3975/Downloads/sprite6.png")};
+		Image [] pyro2 = {new Image("res/sprite4.png"), new Image("res/sprite5.png"), new Image("res/sprite6.png")};
 		right = new Animation(pyro2, 150, false);
 		player = right;
-		Image [] pyro3 = {new Image("/Users/jhar3975/Downloads/sprite7.png")};
+		Image [] pyro3 = {new Image("res/sprite7.png")};
 		jump = new Animation(pyro3, 150, false);
 		
 	}
