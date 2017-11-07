@@ -19,19 +19,19 @@ public class Main extends BasicGame{
 	Random rand = new Random();
 	
 	//random X quad 1
-	int x1 = rand.nextInt(480);
+	int x1 = rand.nextInt(400);
 	
 	//random Y quad 1
 	int y1 = 500;
 	
 	//random X quad 2
-	int x2 = rand.nextInt(300);
+	int x2 = rand.nextInt(400);
 	
 	//random Y quad 2
 	int y2 = 310;
 	
 	//random X quad 3
-	int x3 = rand.nextInt(150);
+	int x3 = rand.nextInt(400);
 	
 	//random Y quad 3
 	int y3 = 100;
@@ -266,19 +266,19 @@ public class Main extends BasicGame{
 		if(PY>690&&input.isKeyDown(Input.KEY_ENTER))
 		{
 			//random X quad 1
-			x1 = rand.nextInt(480);
+			x1 = rand.nextInt(400);
 			
 			//random Y quad 1
 			y1 = 500;
 			
 			//random X quad 2
-			x2 = rand.nextInt(300);
+			x2 = rand.nextInt(400);
 			
 			//random Y quad 2
 			y2 = 310;
 			
 			//random X quad 3
-			x3 = rand.nextInt(150);
+			x3 = rand.nextInt(400);
 			
 			//random Y quad 3
 			y3 = 100;
@@ -288,9 +288,6 @@ public class Main extends BasicGame{
 			VY = -1.0f;
 			score=0;
 		}
-		
-		
-		
 		
 	}
 
