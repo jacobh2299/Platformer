@@ -8,5 +8,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/Users/jhar3975/Documents/slick/lib/slick.jar"/>
+	<classpathentry kind="lib" path="/Users/jhar3975/Documents/slick/lib/jogg-0.0.7.jar"/>
+	<classpathentry kind="lib" path="/Users/jhar3975/Documents/slick/lib/jorbis-0.0.15.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,6 +1,6 @@
 import java.io.IOException;
 import java.util.Random;
-
+import java.lang.Object;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -10,6 +10,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Music;
 
 public class Main extends BasicGame{
 
@@ -52,8 +53,9 @@ public class Main extends BasicGame{
 	{
 		super("FirstPlatformer");
 		
+		
 	}
-
+	
 	public static void main(String[] args) 
 	{
 		try {
@@ -62,6 +64,7 @@ public class Main extends BasicGame{
 			app.setTargetFrameRate(60);
 			app.setShowFPS(false);
 			app.start();
+			
 			
 			}
 		catch(Exception e)
@@ -72,7 +75,7 @@ public class Main extends BasicGame{
 
 	public void render(GameContainer arg0, Graphics arg1) throws SlickException
 	{
-	
+		
 		BG.draw(0,0);
 		//block1
 		Block.draw(x1,y1);
@@ -105,6 +108,8 @@ public class Main extends BasicGame{
 
 	public void init(GameContainer arg0) throws SlickException 
 	{
+		Music music = new Music("res/song.ogg");
+		music.play();
 		DS = new Image("res/DeathScreen.png");
 		Block = new Image("res/Platform.png");
 		Image [] pyro = {new Image("res/sprite1.png"), new Image("res/sprite2.png"), new Image("res/sprite3.png")};
@@ -147,13 +152,14 @@ public class Main extends BasicGame{
 	    else {
 	        throw new RuntimeException("Unsupported operating system.");
 	    }
-
+   
 	    Runtime.getRuntime().exec(shutdownCommand);
 	    System.exit(0);
 	}
 	
 	public void update(GameContainer arg0, int arg1) throws SlickException 
 	{
+
 		//If score is 100 then call shutdown method
 		if(score==100)
 		{
