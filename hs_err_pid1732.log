@@ -1,0 +1,119 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007fffc0bec05d, pid=1732, tid=0x0000000000000307
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_144-b01) (build 1.8.0_144-b01)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.144-b01 mixed mode bsd-amd64 compressed oops)
+# Problematic frame:
+# C  [libobjc.A.dylib+0x705d]  objc_msgSend+0x1d
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007faf118e0000):  JavaThread "AppKit Thread" daemon [_thread_in_native, id=775, stack(0x00007fff584f3000,0x00007fff58cf3000)]
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 1 (SEGV_MAPERR), si_addr: 0x000007faf1077230
+
+Registers:
+RAX=0x0000000000000000, RBX=0x00007faf1056e2c0, RCX=0x0000000000000000, RDX=0x00000000000fc040
+RSP=0x00007fff58ced918, RBP=0x00007fff58ced940, RSI=0x00007fffaa4d87ab, RDI=0x00007faf10783b60
+R8 =0x0000000000000001, R9 =0x00007faf12d00040, R10=0x000007faf1077218, R11=0x00007fffaa4d87ab
+R12=0x0000000000000094, R13=0x00007fffaa4bb17f, R14=0x00007faf10783b60, R15=0x0000000000000000
+RIP=0x00007fffc0bec05d, EFLAGS=0x0000000000010206, ERR=0x0000000000000004
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x00007fff58ced918)
+0x00007fff58ced918:   0000000126c92598 00007faf1056e2c0
+0x00007fff58ced928:   0000000126cc6c60 00007faf106512d0
+0x00007fff58ced938:   00007faf106512d0 00007fff58cedeb0
+0x00007fff58ced948:   00007fffa99a7e7b 0000000000000000
+0x00007fff58ced958:   0000000000000000 4084500000000000
+0x00007fff58ced968:   4086800000000000 0000000000000000
+0x00007fff58ced978:   0000000000000000 4084500000000000
+0x00007fff58ced988:   4086800000000000 00007fff58ced9b0
+0x00007fff58ced998:   00007fffac4ecf20 0000000000000700
+0x00007fff58ced9a8:   ffff8050efa99d30 00007faf105662d0
+0x00007fff58ced9b8:   00007fffca349480 00007fff58ceda20
+0x00007fff58ced9c8:   00007fffc0bf4243 00007fffca349b80
+0x00007fff58ced9d8:   00000001aa473100 00007faf105662d0
+0x00007fff58ced9e8:   ffff8050efa99d30 00007faf10800fd0
+0x00007fff58ced9f8:   00007faf10473990 00007fffaa473100
+0x00007fff58ceda08:   00007faf1056e2c0 00007fffc0bec040
+0x00007fff58ceda18:   00007fff58ceda80 00007fff58ceda70
+0x00007fff58ceda28:   00007fffaa08191f 401c000000000000
+0x00007fff58ceda38:   4086a00000000000 402c000000000000
+0x00007fff58ceda48:   0000000000000000 00007fff00000000
+0x00007fff58ceda58:   0000000000000000 00007fffaa48cbb8
+0x00007fff58ceda68:   00007faf10473900 0000000158cedac0
+0x00007fff58ceda78:   00007faf10473990 0000000000000088
+0x00007fff58ceda88:   00007faf1041f170 012c000000000000
+0x00007fff58ceda98:   00007faf1056e2c0 00007fff58cedac0
+0x00007fff58cedaa8:   00007faf10473990 00007fff58cedb90
+0x00007fff58cedab8:   00007faf10473990 00007fff58cedb00
+0x00007fff58cedac8:   00007fffa9a5fc42 401c000000000000
+0x00007fff58cedad8:   4086980000000000 402c000000000000
+0x00007fff58cedae8:   4030000000000000 00007fff58cedb90
+0x00007fff58cedaf8:   00007faf10473990 00007fff58cedb80
+0x00007fff58cedb08:   00007fffa9a5fbe4 401c000000000000 
+
+Instructions: (pc=0x00007fffc0bec05d)
+0x00007fffc0bec03d:   0f 1f 00 48 85 ff 2e 74 62 40 f6 c7 01 2e 75 66
+0x00007fffc0bec04d:   49 ba f8 ff ff ff ff 7f 00 00 4c 23 17 49 89 f3
+0x00007fffc0bec05d:   45 23 5a 18 49 c1 e3 04 4d 03 5a 10 49 3b 33 75
+0x00007fffc0bec06d:   04 41 ff 63 08 49 83 3b 01 76 0d 49 83 c3 10 49 
+
+Register to memory mapping:
+
+RAX=0x0000000000000000 is an unknown value
+RBX=0x00007faf1056e2c0 is an unknown value
+RCX=0x0000000000000000 is an unknown value
+RDX=0x00000000000fc040 is an unknown value
+RSP=0x00007fff58ced918 is pointing into the stack for thread: 0x00007faf118e0000
+RBP=0x00007fff58ced940 is pointing into the stack for thread: 0x00007faf118e0000
+RSI=0x00007fffaa4d87ab: __NSStyleNameIndexTable+0xe03f3 in /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit at 0x00007fffa980b000
+RDI=0x00007faf10783b60 is an unknown value
+R8 =0x0000000000000001 is an unknown value
+R9 =0x00007faf12d00040 is an unknown value
+R10=0x000007faf1077218 is an unknown value
+R11=0x00007fffaa4d87ab: __NSStyleNameIndexTable+0xe03f3 in /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit at 0x00007fffa980b000
+R12=0x0000000000000094 is an unknown value
+R13=0x00007fffaa4bb17f: __NSStyleNameIndexTable+0xc2dc7 in /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit at 0x00007fffa980b000
+R14=0x00007faf10783b60 is an unknown value
+R15=0x0000000000000000 is an unknown value
+
+
+Stack: [0x00007fff584f3000,0x00007fff58cf3000],  sp=0x00007fff58ced918,  free space=8170k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libobjc.A.dylib+0x705d]  objc_msgSend+0x1d
+C  [AppKit+0x19ce7b]  -[NSView _recursiveDisplayRectIfNeededIgnoringOpacity:isVisibleRect:rectIsVisibleRectForView:topView:]+0x6ee
+C  [AppKit+0x19d6d1]  -[NSView _recursiveDisplayRectIfNeededIgnoringOpacity:isVisibleRect:rectIsVisibleRectForView:topView:]+0xf44
+C  [AppKit+0x19c2af]  -[NSThemeFrame _recursiveDisplayRectIfNeededIgnoringOpacity:isVisibleRect:rectIsVisibleRectForView:topView:]+0x14e
+C  [AppKit+0x19a6d8]  -[NSView _displayRectIgnoringOpacity:isVisibleRect:rectIsVisibleRectForView:]+0x994
+C  [AppKit+0x195fca]  -[NSView displayIfNeeded]+0x6d4
+C  [AppKit+0x1958db]  -[NSWindow displayIfNeeded]+0xe6
+C  [AppKit+0x8f5cb4]  ___NSWindowGetDisplayCycleObserver_block_invoke.6228+0x115
+C  [AppKit+0x1953b9]  __37+[NSDisplayCycle currentDisplayCycle]_block_invoke+0x1c6
+C  [QuartzCore+0x11d06]  _ZN2CA11Transaction19run_commit_handlersE18CATransactionPhase+0x2e
+C  [QuartzCore+0x11b8bc]  _ZN2CA7Context18commit_transactionEPNS_11TransactionE+0xa0
+C  [QuartzCore+0x107e1]  _ZN2CA11Transaction6commitEv+0x1db
+C  [AppKit+0x4788b1]  __37+[NSDisplayCycle currentDisplayCycle]_block_invoke.31+0x143
+C  [CoreFoundation+0xa6d37]  __CFRUNLOOP_IS_CALLING_OUT_TO_AN_OBSERVER_CALLBACK_FUNCTION__+0x17
+C  [CoreFoundation+0xa6ca7]  __CFRunLoopDoObservers+0x187
+C  [CoreFoundation+0x876d9]  __CFRunLoopRun+0x369
+C  [CoreFoundation+0x87114]  CFRunLoopRunSpecific+0x1a4
+C  [HIToolbox+0x30ebc]  RunCurrentEventLoopInMode+0xf0
+C  [HIToolbox+0x30bf9]  ReceiveNextEventCommon+0xb8
+C  [HIToolbox+0x30b26]  _BlockUntilNextEventMatchingListInModeWithFilter+0x47
+C  [AppKit+0x46a54]  _DPSNextEvent+0x460
+C  [AppKit+0x7c27ee]  -[NSApplication(NSEvent) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]+0xaec
+C  [libosxapp.dylib+0x23aa]  -[NSApplicationAWT nextEventMatchingMask:untilDate:inMode:dequeue:]+0x7c
+C  [AppKit+0x3b3db]  -[NSApplication run]+0x39e
+C  [libosxapp.dylib+0x214d]  +[NSApplicationAWT runAWTLoopWithApp:]+0x9c

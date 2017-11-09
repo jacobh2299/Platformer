@@ -1,7 +1,15 @@
-import org.newdawn.slick.*;
-
 import java.io.IOException;
 import java.util.Random;
+
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 
 public class Main extends BasicGame{
 
@@ -13,11 +21,10 @@ public class Main extends BasicGame{
 	private boolean plat2 = false;
 	private boolean plat3 = false;
 	private boolean plat4 = false;
-	private Image BG;
 	private Image DS;
 	private Image Block;
 	Animation player;
-	Animation left, right, jump;
+	Animation left, right, jump, BG;
 	Random rand = new Random();
 	
 	//random X quad 1
@@ -37,6 +44,9 @@ public class Main extends BasicGame{
 	
 	//random Y quad 3
 	int y3 = 100;
+	
+	int x4 = 0;
+	int y4 = 660;
 	
 	public Main() 
 	{
@@ -71,7 +81,7 @@ public class Main extends BasicGame{
 		//block3
 		Block.draw(x3,y3);
 		//block4	
-		Block.draw(0,660);
+		Block.draw(x4,y4);
 		
 		
 		arg1.setColor(Color.white);
@@ -95,7 +105,6 @@ public class Main extends BasicGame{
 
 	public void init(GameContainer arg0) throws SlickException 
 	{
-		BG = new Image("res/cloudBackground.png");
 		DS = new Image("res/DeathScreen.png");
 		Block = new Image("res/Platform.png");
 		Image [] pyro = {new Image("res/sprite1.png"), new Image("res/sprite2.png"), new Image("res/sprite3.png")};
@@ -105,21 +114,54 @@ public class Main extends BasicGame{
 		player = right;
 		Image [] pyro3 = {new Image("res/sprite7.png")};
 		jump = new Animation(pyro3, 150, false);
+		Image [] scroll = {new Image("res/cloudBackground44.png"),new Image("res/cloudBackground43.png"),new Image("res/cloudBackground41.png")
+				,new Image("res/cloudBackground40.png"),new Image("res/cloudBackground39.png"),new Image("res/cloudBackground38.png")
+				,new Image("res/cloudBackground37.png"),new Image("res/cloudBackground36.png"),new Image("res/cloudBackground35.png")
+				,new Image("res/cloudBackground34.png"),new Image("res/cloudBackground33.png"),new Image("res/cloudBackground32.png")
+				,new Image("res/cloudBackground31.png"),new Image("res/cloudBackground30.png"),new Image("res/cloudBackground29.png")
+				,new Image("res/cloudBackground28.png"),new Image("res/cloudBackground27.png"),new Image("res/cloudBackground26.png")
+				,new Image("res/cloudBackground25.png"),new Image("res/cloudBackground24.png"),new Image("res/cloudBackground23.png")
+				,new Image("res/cloudBackground22.png"),new Image("res/cloudBackground21.png"),new Image("res/cloudBackground20.png")
+				,new Image("res/cloudBackground19.png"),new Image("res/cloudBackground18.png"),new Image("res/cloudBackground17.png")
+				,new Image("res/cloudBackground16.png"),new Image("res/cloudBackground15.png"),new Image("res/cloudBackground14.png")
+				,new Image("res/cloudBackground13.png"),new Image("res/cloudBackground12.png"),new Image("res/cloudBackground11.png")
+				,new Image("res/cloudBackground10.png"),new Image("res/cloudBackground9.png"),new Image("res/cloudBackground8.png")
+				,new Image("res/cloudBackground7.png"),new Image("res/cloudBackground6.png"),new Image("res/cloudBackground5.png")
+				,new Image("res/cloudBackground4.png"),new Image("res/cloudBackground3.png"),new Image("res/cloudBackground2.png")
+				,new Image("res/cloudBackground.png")};	
+		BG = new Animation(scroll, 50, true);	
+}
 		
-	}
+	
+	//ShutDown Method
+	public static void shutdown() throws RuntimeException, IOException {
+	    String shutdownCommand;
+	    String operatingSystem = System.getProperty("os.name");
 
+	    if ("Linux".equals(operatingSystem) || "Mac OS X".equals(operatingSystem)) {
+	        shutdownCommand = "sudo shutdown -h now";
+	    }
+	    else if ("Windows".equals(operatingSystem)) {
+	        shutdownCommand = "shutdown.exe -s -t 0";
+	    }
+	    else {
+	        throw new RuntimeException("Unsupported operating system.");
+	    }
+
+	    Runtime.getRuntime().exec(shutdownCommand);
+	    System.exit(0);
+	}
+	
 	public void update(GameContainer arg0, int arg1) throws SlickException 
 	{
+		//If score is 100 then call shutdown method
 		if(score==100)
 		{
-			try {
-				Runtime runtime = Runtime.getRuntime();
-				Process proc = runtime.exec("shutdown -s -t 0");
-				System.exit(0);
-			}catch(IOException e) {
-				e.printStackTrace();
-			}
-			
+		try {
+			shutdown();
+		} catch (RuntimeException | IOException e) {
+			e.printStackTrace();
+		}
 		}
 		
 		Input input = arg0.getInput();
@@ -158,7 +200,7 @@ public class Main extends BasicGame{
 			plat3=false;
 		}
 		//platform4
-		if(PX > 0 && PX < 0+220 && PY > 660 && PY < 660+20)
+		if(PX > x4 && PX < x4+220 && PY > y4 && PY < y4+20)
 		{
 			plat4=true;
 		}
@@ -199,6 +241,9 @@ public class Main extends BasicGame{
 			plat2=false;
 			plat4=false;
 			gravity = 0;
+			
+			x4=x3;
+			
 			//random X quad 1
 			x1 = rand.nextInt(480);
 			
@@ -217,8 +262,10 @@ public class Main extends BasicGame{
 			//random Y quad 3
 			y3 = 100;
 			
-			PY=640;
-			PX=50;
+			
+			
+			PY=y4-20;
+			PX=x4+80;
 			VY = -1.0f;
 			score++;
 		}
@@ -231,7 +278,6 @@ public class Main extends BasicGame{
 			plat3=false;
 			gravity = 0;
 
-			PY = 660;
 			VY=-15.0f;
 		}
 		else
@@ -297,8 +343,11 @@ public class Main extends BasicGame{
 			//random Y quad 3
 			y3 = 100;
 			
-			PY=640;
+			x4=0;
+			y4=660;
+			
 			PX=50;
+			PY=640;
 			VY = -1.0f;
 			score=0;
 		}
