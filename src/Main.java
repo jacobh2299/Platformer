@@ -14,7 +14,7 @@ import org.newdawn.slick.Music;
 
 public class Main extends BasicGame{
 
-	private int PX = 50, PY = 660;
+	private int PX = 50, PY = 640;
 	private int score = 0;
 	private float VX, VY, gravity = 0.5f;
 	private boolean jumping = true;
@@ -22,12 +22,21 @@ public class Main extends BasicGame{
 	private boolean plat2 = false;
 	private boolean plat3 = false;
 	private boolean plat4 = false;
+	private boolean left1 = false;
+	private boolean left2 = false;
+	private boolean left3 = false;
+	private boolean left4 = false;
 	private Image DS;
 	private Image Block;
 	Animation player;
 	Animation left, right, jump, BG;
 	Random rand = new Random();
-	
+	private int plat3move=rand.nextInt(2);
+	private int plat2move=rand.nextInt(2);
+	private int plat1move=rand.nextInt(2);
+	private int plat4move=rand.nextInt(2);
+
+
 	//random X quad 1
 	int x1 = rand.nextInt(400);
 	
@@ -135,6 +144,10 @@ public class Main extends BasicGame{
 				,new Image("res/cloudBackground4.png"),new Image("res/cloudBackground3.png"),new Image("res/cloudBackground2.png")
 				,new Image("res/cloudBackground.png")};	
 		BG = new Animation(scroll, 50, true);	
+		if(PY>690)
+		{
+			music.stop();
+		}
 }
 		
 	
@@ -159,7 +172,87 @@ public class Main extends BasicGame{
 	
 	public void update(GameContainer arg0, int arg1) throws SlickException 
 	{
-
+		
+		if(plat3move==1) {
+		if(left3)
+		{
+		x3-=3;	
+			if(x3<-40)	
+			{
+			x3=-40;
+			left3=false;
+			}
+		}
+		if(!left3)
+		{
+		x3+=3;
+			if(x3>450)
+			{
+				x3=430;
+				left3=true;
+			}
+		}
+		}
+		if(plat2move==1) {
+			if(left2)
+			{
+			x2-=3;	
+				if(x2<-40)	
+				{
+				x2=-40;
+				left2=false;
+				}
+			}
+			if(!left2)
+			{
+			x2+=3;
+				if(x2>450)
+				{
+					x2=430;
+					left2=true;
+				}
+			}
+			}
+		if(plat1move==1) {
+			if(left1)
+			{
+			x1-=3;	
+				if(x1<-40)	
+				{
+				x1=-40;
+				left1=false;
+				}
+			}
+			if(!left1)
+			{
+			x1+=3;
+				if(x1>450)
+				{
+					x1=430;
+					left1=true;
+				}
+			}
+			}if(plat4move==1) {
+				if(left4)
+				{
+				x4-=3;	
+					if(x4<-40)	
+					{
+					x4=-40;
+					left4=false;
+					}
+				}
+				if(!left4)
+				{
+				x4+=3;
+					if(x4>450)
+					{
+						x4=430;
+						left4=true;
+					}
+				}
+				}
+		
 		//If score is 100 then call shutdown method
 		if(score==100)
 		{
@@ -180,35 +273,71 @@ public class Main extends BasicGame{
 		if(PX > x1 && PX < x1+220 && PY > y1 && PY < y1+20)
 		{
 			plat1=true;
+			jumping=false;
+			gravity=0.00f;
+			if(left1&&plat1move==1)
+			{
+				PX-=3;
+			}
+			else if(!left1&&plat1move==1){
+			PX+=3;}
 		}
 		else
 		{
 			plat1=false;
+			jumping=true;
+			gravity=15.0f;
 		}
 		
 		//platform2
 		if(PX > x2 && PX < x2+220 && PY > y2 && PY < y2+20)
 		{
 			plat2=true;
+			jumping=false;
+			gravity=0.00f;
+			if(left2&&plat2move==1)
+			{
+				PX-=3;
+			}
+			else if(!left2&&plat2move==1){
+			PX+=3;}
 		}
 		else
 		{
 			plat2=false;
+			jumping=true;
+			gravity=15.0f;
 		}
 		
 		//platform3
 		if(PX > x3 && PX < x3+220 && PY > y3 && PY < y3+20)
 		{
 			plat3=true;
+			jumping=false;
+			gravity=0.00f;
+			if(left3&&plat3move==1)
+			{
+				PX-=3;
+			}
+			else if(!left3&&plat3move==1){
+			PX+=3;}
 		}
 		else
 		{
 			plat3=false;
+			jumping=true;
+			gravity=15.0f;
 		}
 		//platform4
 		if(PX > x4 && PX < x4+220 && PY > y4 && PY < y4+20)
 		{
 			plat4=true;
+			if(left4&&plat4move==1)
+			{
+				PX-=3;
+			}
+			else if(!left4&&plat4move==1){
+			PX+=3;}
 		}
 		else
 		{
@@ -226,7 +355,7 @@ public class Main extends BasicGame{
 			plat4=false;
 			gravity = 0;
 			PY = y1;
-			VY=-15.0f;
+//			VY=-15.0f;
 		}
 		
 		else if(plat2 && PY > y2)
@@ -237,7 +366,7 @@ public class Main extends BasicGame{
 			plat4=false;
 			gravity = 0;
 			PY = y2;
-			VY=-15.0f;
+//			VY=-15.0f;
 		}
 		
 		else if(plat3 && PY > y3)
@@ -247,7 +376,10 @@ public class Main extends BasicGame{
 			plat2=false;
 			plat4=false;
 			gravity = 0;
-			
+			plat3move=rand.nextInt(2);
+			plat1move=rand.nextInt(2);
+			plat2move=rand.nextInt(2);
+			plat4move=rand.nextInt(2);
 			x4=x3;
 			
 			//random X quad 1
@@ -276,7 +408,7 @@ public class Main extends BasicGame{
 			score++;
 		}
 		
-		else if(plat4 && PY > 660)
+		else if(plat4 && PY > y4)
 		{
 			jumping = false;
 			plat1=false;
@@ -284,7 +416,7 @@ public class Main extends BasicGame{
 			plat3=false;
 			gravity = 0;
 
-			VY=-15.0f;
+			VY=-0.00001f;
 		}
 		else
 		{
@@ -348,6 +480,10 @@ public class Main extends BasicGame{
 			
 			//random Y quad 3
 			y3 = 100;
+			plat3move=rand.nextInt(2);
+			plat1move=rand.nextInt(2);
+			plat2move=rand.nextInt(2);
+			plat4move=rand.nextInt(2);
 			
 			x4=0;
 			y4=660;
@@ -356,6 +492,8 @@ public class Main extends BasicGame{
 			PY=640;
 			VY = -1.0f;
 			score=0;
+			
+			
 		}
 		
 	}
