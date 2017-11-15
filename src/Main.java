@@ -70,11 +70,9 @@ public class Main extends BasicGame{
 		try {
 			AppGameContainer app = new AppGameContainer(new Main());
 			app.setDisplayMode(650,720,false);
-			app.setTargetFrameRate(60);
+			app.setTargetFrameRate(80);
 			app.setShowFPS(false);
 			app.start();
-			
-			
 			}
 		catch(Exception e)
 		{
@@ -416,7 +414,7 @@ public class Main extends BasicGame{
 			plat3=false;
 			gravity = 0;
 
-			VY=-0.00001f;
+			VY=-0.0f;
 		}
 		else
 		{
