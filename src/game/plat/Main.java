@@ -286,7 +286,7 @@ public class Main extends BasicGame{
 		PY += VY;
 		VY += gravity;
 		//Timers
-		if(r1>=10&&platFormActive1)
+		if(score>=10&&r1>=10&&platFormActive1)
 		{
 			Timer timer1 = new Timer(1000, new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -301,7 +301,7 @@ public class Main extends BasicGame{
 			timer1.start();
 
 		}
-		if(r1>=10&&!platFormActive1)
+		if(score>=10&&r1>=10&&!platFormActive1)
 		{
 			Timer timer1 = new Timer(1000, new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -312,7 +312,7 @@ public class Main extends BasicGame{
 			timer1.start();
 					
 		}
-		if(r2>=10&&platFormActive2)
+		if(score>=10&&r2>=10&&platFormActive2)
 		{
 			Timer timer1 = new Timer(1000, new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -327,7 +327,7 @@ public class Main extends BasicGame{
 			timer1.start();
 			
 		}
-		if(r2>=10&&!platFormActive2)
+		if(score>=10&&r2>=10&&!platFormActive2)
 		{
 			Timer timer1 = new Timer(1000, new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -338,7 +338,7 @@ public class Main extends BasicGame{
 			timer1.start();
 					
 		}
-		if(r3>=10&&platFormActive3)
+		if(score>=10&&r3>=10&&platFormActive3)
 		{
 			Timer timer1 = new Timer(1000, new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -353,7 +353,7 @@ public class Main extends BasicGame{
 			timer1.start();
 
 		}
-		if(r3>=10&&!platFormActive3)
+		if(score>=10&&r3>=10&&!platFormActive3)
 		{
 			Timer timer1 = new Timer(1000, new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
