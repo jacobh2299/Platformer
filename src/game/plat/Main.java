@@ -1,6 +1,11 @@
+package game.plat;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Random;
-import java.lang.Object;
+
+import javax.swing.Timer;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -9,8 +14,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Music;
+import org.newdawn.slick.SlickException;
 
 public class Main extends BasicGame{
 
@@ -26,11 +31,18 @@ public class Main extends BasicGame{
 	private boolean left2 = false;
 	private boolean left3 = false;
 	private boolean left4 = false;
+	private boolean isChanging = false;
+	private boolean platFormActive1 = true;
+	private boolean platFormActive2 = true;
+	private boolean platFormActive3 = true;
 	private Image DS;
 	private Image Block;
 	Animation player;
 	Animation left, right, jump, BG;
 	Random rand = new Random();
+	int r1 = rand.nextInt(20);
+	int r2 = rand.nextInt(20);
+	int r3 = rand.nextInt(20);
 	private int plat3move=rand.nextInt(2);
 	private int plat2move=rand.nextInt(2);
 	private int plat1move=rand.nextInt(2);
@@ -39,19 +51,19 @@ public class Main extends BasicGame{
 
 	//random X quad 1
 	int x1 = rand.nextInt(400);
-	
+
 	//random Y quad 1
 	int y1 = 500;
 	
 	//random X quad 2
 	int x2 = rand.nextInt(400);
-	
+
 	//random Y quad 2
 	int y2 = 310;
 	
 	//random X quad 3
 	int x3 = rand.nextInt(400);
-	
+
 	//random Y quad 3
 	int y3 = 100;
 	
@@ -85,17 +97,24 @@ public class Main extends BasicGame{
 		
 		BG.draw(0,0);
 		//block1
-		Block.draw(x1,y1);
+		if(platFormActive1) {
+		Block.draw(x1,y1);}
 		//block2
-		Block.draw(x2,y2);
+		if(platFormActive2) {
+		Block.draw(x2,y2);}
 		//block3
-		Block.draw(x3,y3);
+		if(platFormActive3) {
+		Block.draw(x3,y3);}
 		//block4	
 		Block.draw(x4,y4);
 		
 		
 		arg1.setColor(Color.white);
 		arg1.drawString("Score: "+score, 10, 10);
+		arg1.drawString("r1: "+r1,10,30);
+		arg1.drawString("r2: "+r2,10,50);
+		arg1.drawString("r3: "+r3,10,70);
+
 //		arg1.drawString(PY+"", 10, 10);
 //		arg1.setColor(Color.white);
 //		arg1.drawString(PX+"", 50, 10);
@@ -266,10 +285,90 @@ public class Main extends BasicGame{
 		PX += VX;
 		PY += VY;
 		VY += gravity;
-		
-		//PlatForm1
-		if(PX > x1 && PX < x1+220 && PY > y1 && PY < y1+20)
+		//Timers
+		if(r1>=10&&platFormActive1)
 		{
+			Timer timer1 = new Timer(1000, new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					platFormActive1 = false;
+					if(r1<10)
+					{
+						platFormActive1=true;
+					}
+				}
+			});
+			timer1.setRepeats(false);
+			timer1.start();
+
+		}
+		if(r1>=10&&!platFormActive1)
+		{
+			Timer timer1 = new Timer(1000, new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					platFormActive1 = true;
+				}
+			});
+			timer1.setRepeats(false);
+			timer1.start();
+					
+		}
+		if(r2>=10&&platFormActive2)
+		{
+			Timer timer1 = new Timer(1000, new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					platFormActive2=false;
+					if(r2<10)
+					{
+						platFormActive2=true;
+					}
+				}
+			});
+			timer1.setRepeats(false);
+			timer1.start();
+			
+		}
+		if(r2>=10&&!platFormActive2)
+		{
+			Timer timer1 = new Timer(1000, new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					platFormActive2 = true;
+				}
+			});
+			timer1.setRepeats(false);
+			timer1.start();
+					
+		}
+		if(r3>=10&&platFormActive3)
+		{
+			Timer timer1 = new Timer(1000, new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					platFormActive3 = false;
+					if(r3<10)
+					{
+						platFormActive3=true;
+					}
+				}
+			});
+			timer1.setRepeats(false);
+			timer1.start();
+
+		}
+		if(r3>=10&&!platFormActive3)
+		{
+			Timer timer1 = new Timer(1000, new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					platFormActive3 = true;
+				}
+			});
+			timer1.setRepeats(false);
+			timer1.start();
+					
+		}
+		//PlatForm1 collision
+		
+		if(platFormActive1 && PX > x1 && PX < x1+220 && PY > y1 && PY < y1+20)
+		{
+			
 			plat1=true;
 			jumping=false;
 			gravity=0.00f;
@@ -280,6 +379,7 @@ public class Main extends BasicGame{
 			else if(!left1&&plat1move==1){
 			PX+=3;}
 		}
+		
 		else
 		{
 			plat1=false;
@@ -287,8 +387,10 @@ public class Main extends BasicGame{
 			gravity=15.0f;
 		}
 		
+		
 		//platform2
-		if(PX > x2 && PX < x2+220 && PY > y2 && PY < y2+20)
+		
+		if(platFormActive2 && PX > x2 && PX < x2+220 && PY > y2 && PY < y2+20)
 		{
 			plat2=true;
 			jumping=false;
@@ -300,35 +402,53 @@ public class Main extends BasicGame{
 			else if(!left2&&plat2move==1){
 			PX+=3;}
 		}
+		
 		else
 		{
 			plat2=false;
 			jumping=true;
 			gravity=15.0f;
+			
 		}
 		
 		//platform3
-		if(PX > x3 && PX < x3+220 && PY > y3 && PY < y3+20)
+		
+		if(platFormActive3 && PX > x3 && PX < x3+220 && PY > y3 && PY < y3+20)
 		{
+			
+			
 			plat3=true;
 			jumping=false;
 			gravity=0.00f;
+			
+			r1 = rand.nextInt(20);
+			r2 = rand.nextInt(20);
+			r3 = rand.nextInt(20);
+			platFormActive1=true;
+			platFormActive2=true;
+			platFormActive3=true;
+			
 			if(left3&&plat3move==1)
 			{
 				PX-=3;
 			}
 			else if(!left3&&plat3move==1){
 			PX+=3;}
+		
 		}
+		
 		else
 		{
 			plat3=false;
 			jumping=true;
 			gravity=15.0f;
+
 		}
+		
 		//platform4
 		if(PX > x4 && PX < x4+220 && PY > y4 && PY < y4+20)
 		{
+			
 			plat4=true;
 			if(left4&&plat4move==1)
 			{
@@ -490,8 +610,13 @@ public class Main extends BasicGame{
 			PY=640;
 			VY = -1.0f;
 			score=0;
+			r1 = rand.nextInt(20);
+			r2 = rand.nextInt(20);
+			r3 = rand.nextInt(20);
 			
-			
+			platFormActive1=true;
+			platFormActive2=true;
+			platFormActive3=true;
 		}
 		
 	}
